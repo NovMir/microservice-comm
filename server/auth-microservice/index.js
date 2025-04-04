@@ -1,6 +1,7 @@
 //entry point
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+const { buildSubgraphSchema } = require('@apollo/subgraph');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
@@ -17,20 +18,24 @@ async function startServer() {
     const server = new ApolloServer({
         typeDefs,
         resolvers,
-        context: ({ req }) => {
-            const token = req.headers.authorization || '';
-            console.log(req.headers.authorization);
-            if (token){
-                try{
-                    const user = jwt.verify(token.replace('Bearer ',''), process.env.JWT_SECRET);
+        schema: buildSubgraphSchema({ typeDefs, resolvers }),
+        context:async ({ req }) => {
+            try{
+                const authHeader = req.headers.authorization || '';
+            
+            console.log("authHeader",authHeader);
+            if (authHeader && authHeader.startsWith('Bearer ')) {
+                const token = authHeader.replace('Bearer ', '');
+                const user = jwt.verify(token,process.env.JWT_SECRET);
                     return { user };
                 
-            }catch (err) {
-                console.error('Invalid token',err.message);
-                return { user: null };
             }
-        }
+                return { user: null };
+            }catch (error){
+                console.error('Error verifying token',error);
+        
         return { user: null};
+    }
             },
     });
     await server.start();

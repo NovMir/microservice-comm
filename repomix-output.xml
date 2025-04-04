@@ -1,0 +1,3744 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+<additional_info>
+
+</additional_info>
+
+</file_summary>
+
+<directory_structure>
+frontend/frontend-auth/.gitignore
+frontend/frontend-auth/eslint.config.js
+frontend/frontend-auth/index.html
+frontend/frontend-auth/package.json
+frontend/frontend-auth/public/vite.svg
+frontend/frontend-auth/README.md
+frontend/frontend-auth/src/Apolloclient.js
+frontend/frontend-auth/src/App.css
+frontend/frontend-auth/src/App.jsx
+frontend/frontend-auth/src/assets/react.svg
+frontend/frontend-auth/src/index.css
+frontend/frontend-auth/src/Login.jsx
+frontend/frontend-auth/src/main.jsx
+frontend/frontend-auth/src/Navbar.jsx
+frontend/frontend-auth/src/Register.jsx
+frontend/frontend-auth/vite.config.js
+frontend/frontend-community/.gitignore
+frontend/frontend-community/eslint.config.js
+frontend/frontend-community/index.html
+frontend/frontend-community/package.json
+frontend/frontend-community/public/vite.svg
+frontend/frontend-community/README.md
+frontend/frontend-community/src/ApolloClient.js
+frontend/frontend-community/src/App.css
+frontend/frontend-community/src/App.jsx
+frontend/frontend-community/src/assets/react.svg
+frontend/frontend-community/src/CreateHelppage.jsx
+frontend/frontend-community/src/CreatePostPage.jsx
+frontend/frontend-community/src/dateFormatter.js
+frontend/frontend-community/src/error.jsx
+frontend/frontend-community/src/Footer.jsx
+frontend/frontend-community/src/Header.jsx
+frontend/frontend-community/src/helpcard.jsx
+frontend/frontend-community/src/helpdetail.jsx
+frontend/frontend-community/src/helpform.jsx
+frontend/frontend-community/src/helplist.jsx
+frontend/frontend-community/src/HelpPage.jsx
+frontend/frontend-community/src/Home.jsx
+frontend/frontend-community/src/index.css
+frontend/frontend-community/src/loading.jsx
+frontend/frontend-community/src/main.jsx
+frontend/frontend-community/src/mutations.js
+frontend/frontend-community/src/postcard.jsx
+frontend/frontend-community/src/postdetail.jsx
+frontend/frontend-community/src/postform.jsx
+frontend/frontend-community/src/postlist.jsx
+frontend/frontend-community/src/PostsPage.jsx
+frontend/frontend-community/src/queries.js
+frontend/frontend-community/vite.config.js
+README.md
+server/auth-microservice/authResolvers.js
+server/auth-microservice/authTypeDefs.js
+server/auth-microservice/index.js
+server/auth-microservice/package.json
+server/auth-microservice/UserSchema.js
+server/community-microservice/CommPostSchema.js
+server/community-microservice/CommResolvers.js
+server/community-microservice/CommTypeDefs.js
+server/community-microservice/db.js
+server/community-microservice/HelpReqSchema.js
+server/community-microservice/index.js
+server/community-microservice/package.json
+server/gateway.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="frontend/frontend-community/.gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="frontend/frontend-community/eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+
+export default [
+  { ignores: ['dist'] },
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+    },
+  },
+]
+</file>
+
+<file path="frontend/frontend-community/index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="frontend/frontend-community/package.json">
+{
+  "name": "frontend-community",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.13.5",
+    "@apollo/subgraph": "^2.10.0",
+    "graphql": "^16.10.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.4.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@originjs/vite-plugin-federation": "^1.4.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "vite": "^6.2.0"
+  }
+}
+</file>
+
+<file path="frontend/frontend-community/public/vite.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+</file>
+
+<file path="frontend/frontend-community/README.md">
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+</file>
+
+<file path="frontend/frontend-community/src/ApolloClient.js">
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
+const httpLink = createHttpLink({
+  uri: 'http://localhost:4002/graphql', 
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    }
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
+export default client;
+</file>
+
+<file path="frontend/frontend-community/src/App.css">
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+</file>
+
+<file path="frontend/frontend-community/src/App.jsx">
+// src/App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
+import Home from './Home';
+import PostsPage from './PostsPage';
+import CreatePostPage from './CreatePostPage';
+import HelpPage from './HelpPage';
+import CreateHelpPage from './CreateHelpPage';
+import PostDetail from './postdetail';
+import HelpDetail from './helpdetail';
+import './index.css';
+
+function App() {
+  return (
+    <Router>
+      <div className="app-container">
+        <Header />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+        <Route path="/posts" element={<PostsPage />} />
+        <Route path="/posts/:id" element={<PostDetail />} />
+         <Route path="/create-post" element={<CreatePostPage />} />
+          <Route path="/help" element={<HelpPage />} />
+           <Route path="/help/:id" element={<HelpDetail />} />
+            <Route path="/create-help" element={<CreateHelpPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+</file>
+
+<file path="frontend/frontend-community/src/assets/react.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+</file>
+
+<file path="frontend/frontend-community/src/CreateHelppage.jsx">
+// src/pages/CreateHelpPage.jsx
+import React, { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import HelpForm from './helpform';
+
+const CreateHelpPage = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    // Check if user is authenticated
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token);
+    setIsLoading(false);
+  }, []);
+  
+  // Show loading while checking authentication
+  if (isLoading) {
+    return <div className="loading">Checking authentication...</div>;
+  }
+  
+  // Redirect if not authenticated
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  
+  return (
+    <div className="create-help-page">
+      <h1 style={{ marginBottom: '30px' }}>Request Community Help</h1>
+      
+      <div className="help-guidelines" style={{
+        backgroundColor: '#fff3cd',
+        padding: '15px',
+        borderRadius: '8px',
+        marginBottom: '30px'
+      }}>
+        <h3 style={{ fontSize: '1.1rem', marginBottom: '10px' }}>Guidelines for Requesting Help</h3>
+        <ul style={{ paddingLeft: '20px' }}>
+          <li>Be specific about what help you need</li>
+          <li>Include location details if relevant</li>
+          <li>Be respectful of volunteers' time and efforts</li>
+          <li>Mark your request as resolved once help is received</li>
+        </ul>
+      </div>
+      
+      <HelpForm />
+    </div>
+  );
+};
+
+export default CreateHelpPage;
+</file>
+
+<file path="frontend/frontend-community/src/CreatePostPage.jsx">
+// src/pages/CreatePostPage.jsx
+import React, { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import PostForm from './postform';
+
+const CreatePostPage = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    // Check if user is authenticated
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token);
+    setIsLoading(false);
+  }, []);
+  
+  // Show loading while checking authentication
+  if (isLoading) {
+    return <div className="loading">Checking authentication...</div>;
+  }
+  
+  // Redirect if not authenticated
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  
+  return (
+    <div className="create-post-page">
+      <h1 style={{ marginBottom: '30px' }}>Create a New Post</h1>
+      <PostForm />
+    </div>
+  );
+};
+
+export default CreatePostPage;
+</file>
+
+<file path="frontend/frontend-community/src/dateFormatter.js">
+// src/utils/dateFormatter.js
+
+/**
+ * Format a date string into a more readable format
+ * @param {string} dateString - ISO date string from the server
+ * @returns {string} Formatted date string
+ */
+export const formatDate = (dateString) => {
+    if (!dateString) return 'Unknown date';
+    
+    const date = new Date(dateString);
+    
+    // Check if date is valid
+    if (isNaN(date.getTime())) {
+      return 'Invalid date';
+    }
+    
+    // Options for formatting
+    const options = { 
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    };
+    
+    return date.toLocaleDateString('en-US', options);
+  };
+  
+  /**
+   * Get relative time (e.g., "2 hours ago")
+   * @param {string} dateString - ISO date string from the server
+   * @returns {string} Relative time string
+   */
+  export const getRelativeTime = (dateString) => {
+    if (!dateString) return '';
+    
+    const date = new Date(dateString);
+    const now = new Date();
+    
+    // Check if date is valid
+    if (isNaN(date.getTime())) {
+      return '';
+    }
+    
+    const diffInMs = now - date;
+    const diffInSecs = Math.floor(diffInMs / 1000);
+    const diffInMins = Math.floor(diffInSecs / 60);
+    const diffInHours = Math.floor(diffInMins / 60);
+    const diffInDays = Math.floor(diffInHours / 24);
+    
+    if (diffInSecs < 60) {
+      return 'just now';
+    } else if (diffInMins < 60) {
+      return `${diffInMins} minute${diffInMins !== 1 ? 's' : ''} ago`;
+    } else if (diffInHours < 24) {
+      return `${diffInHours} hour${diffInHours !== 1 ? 's' : ''} ago`;
+    } else if (diffInDays < 7) {
+      return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
+    } else {
+      return formatDate(dateString);
+    }
+  };
+</file>
+
+<file path="frontend/frontend-community/src/error.jsx">
+import React from 'react';
+
+const ErrorAlert = ({ message }) => {
+  return (
+    <div className="error-alert">
+      {message}
+    </div>
+  );
+};
+
+export default ErrorAlert;
+</file>
+
+<file path="frontend/frontend-community/src/Footer.jsx">
+// src/components/Footer.jsx
+import React from 'react';
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  
+  return (
+    <footer className="footer">
+      <div className="footer-text">
+        &copy; {currentYear} Community Portal. All rights reserved.
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
+</file>
+
+<file path="frontend/frontend-community/src/Header.jsx">
+// src/components/Header.jsx
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+const Header = () => {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  // Check if user is logged in on component mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  // Handle user logout
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    navigate('/');
+  };
+
+  return (
+    <header className="header">
+      <div className="header-container">
+        <Link to="/" className="logo">
+          Community Portal
+        </Link>
+        
+        <nav className="nav-links">
+          <Link to="/posts">Posts</Link>
+          <Link to="/help">Help Requests</Link>
+          {user && (
+            <>
+              <Link to="/create-post">Create Post</Link>
+              <Link to="/create-help">Request Help</Link>
+            </>
+          )}
+        </nav>
+        
+        <div className="user-menu">
+          {user ? (
+            <>
+              <span className="user-name">Hello, {user.username}</span>
+              <button onClick={handleLogout} className="btn btn-outline">Logout</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="btn btn-outline">Login</Link>
+              <Link to="/register" className="btn btn-primary">Register</Link>
+            </>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
+</file>
+
+<file path="frontend/frontend-community/src/helpcard.jsx">
+// src/components/Help/HelpCard.jsx
+import  { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { VOLUNTEER_FOR_HELP, WITHDRAW_VOLUNTEER } from './mutations';
+import { formatDate } from './dateFormatter';
+
+const Helpcard = ({ helpRequest }) => {
+  const [user, setUser] = useState(null);
+  
+  // Get current user from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  // Check if current user is volunteering
+  const isUserVolunteering = user && helpRequest.volunteers.some(
+    volunteer => volunteer.id === user.id
+  );
+  
+  // Get count of volunteers
+  const volunteerCount = helpRequest.volunteers.length;
+  
+  // Set up volunteer mutation
+  const [volunteerForHelp, { loading: volunteerLoading }] = useMutation(VOLUNTEER_FOR_HELP, {
+    variables: { helpRequestId: helpRequest.id }
+  });
+  
+  // Set up withdraw mutation
+  const [withdrawVolunteer, { loading: withdrawLoading }] = useMutation(WITHDRAW_VOLUNTEER, {
+    variables: { helpRequestId: helpRequest.id }
+  });
+  
+  // Handle volunteer button click
+  const handleVolunteerClick = () => {
+    if (isUserVolunteering) {
+      withdrawVolunteer();
+    } else {
+      volunteerForHelp();
+    }
+  };
+  
+  // Truncate description if it's too long
+  const truncateDescription = (text, maxLength = 150) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
+  };
+
+  return (
+    <div className="card">
+      <div className="card-status" style={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+        marginBottom: '10px' 
+      }}>
+        <span className={`badge ${helpRequest.isResolved ? 'badge-success' : 'badge-warning'}`}>
+          {helpRequest.isResolved ? 'Resolved' : 'Active'}
+        </span>
+        
+        <span className="volunteer-count" style={{ fontSize: '0.9rem' }}>
+          <strong>{volunteerCount}</strong> volunteer{volunteerCount !== 1 ? 's' : ''}
+        </span>
+      </div>
+      
+      <div className="card-content">
+        <p>{truncateDescription(helpRequest.description)}</p>
+      </div>
+      
+      {helpRequest.location && (
+        <div className="location" style={{ 
+          fontSize: '0.9rem', 
+          margin: '10px 0',
+          color: '#666'
+        }}>
+          📍 {helpRequest.location}
+        </div>
+      )}
+      
+      <div className="card-subtitle">
+        Posted by {helpRequest.author?.username || 'Anonymous'} | {formatDate(helpRequest.createdAt)}
+      </div>
+      
+      <div className="card-footer" style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Link to={`/help/${helpRequest.id}`} className="btn btn-outline">
+          View Details
+        </Link>
+        
+        {user && !helpRequest.isResolved && (
+          <button 
+            className={`btn ${isUserVolunteering ? 'btn-danger' : 'btn-success'}`}
+            onClick={handleVolunteerClick}
+            disabled={volunteerLoading || withdrawLoading}
+          >
+            {isUserVolunteering 
+              ? (withdrawLoading ? 'Withdrawing...' : 'Withdraw') 
+              : (volunteerLoading ? 'Volunteering...' : 'Volunteer')}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Helpcard;
+</file>
+
+<file path="frontend/frontend-community/src/helpdetail.jsx">
+// src/components/Help/HelpDetail.jsx
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_HELP_REQUEST } from './queries';
+import { 
+  DELETE_HELP_REQUEST, 
+  UPDATE_HELP_REQUEST,
+  VOLUNTEER_FOR_HELP,
+  WITHDRAW_VOLUNTEER
+} from './mutations';
+import { formatDate } from './dateFormatter';
+import Loading from './loading';
+import ErrorAlert from './error';
+
+const HelpDetail = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  
+  // Get current user from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+  
+  // Query to get help request details
+  const { loading, error, data, refetch } = useQuery(GET_HELP_REQUEST, {
+    variables: { id },
+    fetchPolicy: 'network-only' // Don't use cache
+  });
+  
+  // Delete help request mutation
+  const [deleteHelpRequest, { loading: deleteLoading }] = useMutation(DELETE_HELP_REQUEST, {
+    onCompleted: () => {
+      // Navigate back to help requests list after deletion
+      navigate('/help');
+    },
+    onError: (error) => {
+      console.error('Error deleting help request:', error);
+    }
+  });
+  
+  // Update help request mutation (for resolving/reopening)
+  const [updateHelpRequest, { loading: updateLoading }] = useMutation(UPDATE_HELP_REQUEST, {
+    onCompleted: () => {
+      // Refetch to get updated data
+      refetch();
+    },
+    onError: (error) => {
+      console.error('Error updating help request:', error);
+    }
+  });
+  
+  // Volunteer mutation
+  const [volunteerForHelp, { loading: volunteerLoading }] = useMutation(VOLUNTEER_FOR_HELP, {
+    onCompleted: () => {
+      refetch();
+    }
+  });
+  
+  // Withdraw volunteer mutation
+  const [withdrawVolunteer, { loading: withdrawLoading }] = useMutation(WITHDRAW_VOLUNTEER, {
+    onCompleted: () => {
+      refetch();
+    }
+  });
+  
+  // Handle help request deletion
+  const handleDelete = () => {
+    if (window.confirm('Are you sure you want to delete this help request?')) {
+      deleteHelpRequest({ variables: { id } });
+    }
+  };
+  
+  // Handle resolving/reopening the help request
+  const toggleResolved = () => {
+    updateHelpRequest({
+      variables: {
+        input: {
+          id,
+          isResolved: !data.helpRequest.isResolved
+        }
+      }
+    });
+  };
+  
+  // Handle volunteering/withdrawing
+  const handleVolunteerClick = () => {
+    if (isUserVolunteering) {
+      withdrawVolunteer({ variables: { helpRequestId: id } });
+    } else {
+      volunteerForHelp({ variables: { helpRequestId: id } });
+    }
+  };
+  
+  if (loading) return <Loading />;
+  if (error) return <ErrorAlert message={`Error loading help request: ${error.message}`} />;
+  
+  const helpRequest = data.helpRequest;
+  
+  // Check if current user is the author
+  const isAuthor = user && helpRequest.author && user.id === helpRequest.author.id;
+  // Check if current user is a community organizer
+  const isOrganizer = user && user.role === 'COMMUNITY_ORGANIZER';
+  // Check if current user is volunteering
+  const isUserVolunteering = user && helpRequest.volunteers.some(
+    volunteer => volunteer.id === user.id
+  );
+  // Can modify if author or organizer
+  const canModify = isAuthor || isOrganizer;
+  
+  return (
+    <div className="help-detail">
+      <div className="help-header" style={{ marginBottom: '20px' }}>
+        <Link to="/help" className="btn btn-outline" style={{ marginRight: '10px' }}>
+          ← Back to Help Requests
+        </Link>
+        
+        {canModify && (
+          <div className="help-actions" style={{ display: 'inline-block' }}>
+            <button 
+              className={`btn ${helpRequest.isResolved ? 'btn-warning' : 'btn-success'}`}
+              onClick={toggleResolved}
+              disabled={updateLoading}
+              style={{ marginRight: '10px' }}
+            >
+              {updateLoading 
+                ? 'Updating...' 
+                : (helpRequest.isResolved ? 'Reopen Request' : 'Mark as Resolved')}
+            </button>
+            
+            <button 
+              className="btn btn-danger"
+              onClick={handleDelete}
+              disabled={deleteLoading}
+            >
+              {deleteLoading ? 'Deleting...' : 'Delete Request'}
+            </button>
+          </div>
+        )}
+      </div>
+      
+      <div className="card">
+        <div className="help-status" style={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center', 
+          marginBottom: '15px' 
+        }}>
+          <span className={`badge ${helpRequest.isResolved ? 'badge-success' : 'badge-warning'}`} style={{ fontSize: '1rem' }}>
+            {helpRequest.isResolved ? 'Resolved' : 'Active'}
+          </span>
+          
+          {user && !isAuthor && !helpRequest.isResolved && (
+            <button 
+              className={`btn ${isUserVolunteering ? 'btn-danger' : 'btn-success'}`}
+              onClick={handleVolunteerClick}
+              disabled={volunteerLoading || withdrawLoading}
+            >
+              {isUserVolunteering 
+                ? (withdrawLoading ? 'Withdrawing...' : 'Withdraw as Volunteer') 
+                : (volunteerLoading ? 'Volunteering...' : 'Volunteer to Help')}
+            </button>
+          )}
+        </div>
+        
+        <div className="help-meta" style={{ marginBottom: '20px' }}>
+          <div>
+            <strong>Posted by:</strong> {helpRequest.author?.username || 'Anonymous'}
+          </div>
+          <div>
+            <strong>Date:</strong> {formatDate(helpRequest.createdAt)}
+          </div>
+          {helpRequest.location && (
+            <div>
+              <strong>Location:</strong> {helpRequest.location}
+            </div>
+          )}
+          {helpRequest.updatedAt && (
+            <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '5px' }}>
+              Last updated: {formatDate(helpRequest.updatedAt)}
+            </div>
+          )}
+        </div>
+        
+        <div className="help-description" style={{ 
+          lineHeight: '1.7',
+          whiteSpace: 'pre-wrap',
+          marginBottom: '20px',
+          padding: '15px',
+          backgroundColor: '#f9f9f9',
+          borderRadius: '5px'
+        }}>
+          {helpRequest.description}
+        </div>
+        
+        <div className="volunteers-section">
+          <h3 style={{ marginBottom: '10px' }}>Volunteers ({helpRequest.volunteers.length})</h3>
+          
+          {helpRequest.volunteers.length === 0 ? (
+            <p>No volunteers yet</p>
+          ) : (
+            <ul style={{ 
+              listStyle: 'none',
+              padding: '0',
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '10px'
+            }}>
+              {helpRequest.volunteers.map((volunteer) => (
+                <li key={volunteer.id} style={{
+                  padding: '5px 10px',
+                  backgroundColor: '#e3f2fd',
+                  borderRadius: '15px',
+                  display: 'inline-block'
+                }}>
+                  {volunteer.username}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HelpDetail;
+</file>
+
+<file path="frontend/frontend-community/src/helpform.jsx">
+// src/components/Help/HelpForm.jsx
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
+import { CREATE_HELP_REQUEST } from './mutations';
+import { GET_HELP_REQUESTS } from './queries';
+import ErrorAlert from './error';
+
+const HelpForm = () => {
+  const [formData, setFormData] = useState({
+    description: '',
+    location: ''
+  });
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  // Set up mutation
+  const [createHelpRequest, { loading }] = useMutation(CREATE_HELP_REQUEST, {
+    onCompleted: (data) => {
+      // Redirect to the newly created help request
+      navigate(`/help/${data.createHelpRequest.id}`);
+    },
+    onError: (error) => {
+      setError(error.message);
+    },
+    // Update cache after creation
+    update: (cache, { data: { createHelpRequest } }) => {
+      // Read current help requests from cache
+      const { helpRequests } = cache.readQuery({ query: GET_HELP_REQUESTS }) || { helpRequests: [] };
+      
+      // Write updated help requests to cache
+      cache.writeQuery({
+        query: GET_HELP_REQUESTS,
+        data: { helpRequests: [createHelpRequest, ...helpRequests] }
+      });
+    },
+    // Variables for the mutation
+    variables: {
+      input: formData
+    }
+  });
+
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Validate form
+    if (!formData.description.trim()) {
+      setError('Description is required');
+      return;
+    }
+    
+    // Clear any previous errors
+    setError('');
+    
+    // Submit the form
+    createHelpRequest();
+  };
+
+  return (
+    <div className="form-container">
+      <h2 className="form-title">Request Help</h2>
+      
+      {error && <ErrorAlert message={error} />}
+      
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="description" className="form-label">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            className="form-textarea"
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="Describe what help you need..."
+            required
+          ></textarea>
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="location" className="form-label">Location (Optional)</label>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            className="form-input"
+            value={formData.location}
+            onChange={handleChange}
+            placeholder="Enter location where help is needed"
+          />
+        </div>
+        
+        <button 
+          type="submit" 
+          className="btn btn-primary"
+          disabled={loading}
+        >
+          {loading ? 'Submitting...' : 'Submit Request'}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default HelpForm;
+</file>
+
+<file path="frontend/frontend-community/src/helplist.jsx">
+// src/components/Help/HelpList.jsx
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_HELP_REQUESTS } from './queries';
+import HelpCard from './helpcard';
+import Loading from './loading';
+import ErrorAlert from './error';
+
+const HelpList = () => {
+  const [filter, setFilter] = useState('all'); // 'all', 'active', 'resolved'
+  
+  // Query to get all help requests
+  const { loading, error, data, refetch } = useQuery(GET_HELP_REQUESTS, {
+    fetchPolicy: 'network-only' // Don't use cache
+  });
+
+  if (loading) return <Loading />;
+  if (error) return <ErrorAlert message={`Error loading help requests: ${error.message}`} />;
+
+  // Filter help requests based on status
+  const filteredRequests = data.helpRequests.filter(request => {
+    if (filter === 'all') return true;
+    if (filter === 'active') return !request.isResolved;
+    if (filter === 'resolved') return request.isResolved;
+    return true;
+  });
+
+  return (
+    <div className="help-list">
+      <div className="filter-controls" style={{ marginBottom: '20px' }}>
+        <button 
+          className={`btn ${filter === 'all' ? 'btn-primary' : 'btn-outline'}`}
+          onClick={() => setFilter('all')}
+          style={{ marginRight: '10px' }}
+        >
+          All Requests
+        </button>
+        <button 
+          className={`btn ${filter === 'active' ? 'btn-primary' : 'btn-outline'}`}
+          onClick={() => setFilter('active')}
+          style={{ marginRight: '10px' }}
+        >
+          Active
+        </button>
+        <button 
+          className={`btn ${filter === 'resolved' ? 'btn-primary' : 'btn-outline'}`}
+          onClick={() => setFilter('resolved')}
+        >
+          Resolved
+        </button>
+        <button 
+          className="btn btn-outline"
+          onClick={() => refetch()}
+          style={{ marginLeft: '15px' }}
+        >
+          Refresh
+        </button>
+      </div>
+
+      {filteredRequests.length === 0 ? (
+        <p>No help requests found.</p>
+      ) : (
+        <div className="grid">
+          {filteredRequests.map(request => (
+            <HelpCard key={request.id} helpRequest={request} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default HelpList;
+</file>
+
+<file path="frontend/frontend-community/src/HelpPage.jsx">
+// src/pages/HelpPage.jsx
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import HelpList from './helplist';
+
+const HelpPage = () => {
+  const [user, setUser] = useState(null);
+  
+  // Get current user from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  return (
+    <div className="help-page">
+      <div className="page-header" style={{ 
+        display: 'flex', 
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '30px'
+      }}>
+        <h1>Help Requests</h1>
+        {user && (
+          <Link to="/create-help" className="btn btn-primary">
+            Request Help
+          </Link>
+        )}
+      </div>
+      
+      <div className="help-intro" style={{
+        backgroundColor: '#f8f9fa',
+        padding: '20px',
+        borderRadius: '8px',
+        marginBottom: '30px'
+      }}>
+        <h2 style={{ fontSize: '1.2rem', marginBottom: '10px' }}>Community Help Center</h2>
+        <p>
+          This is where community members can request assistance or volunteer to help others.
+          Browse open requests, offer your help, or create a new request if you need assistance.
+        </p>
+      </div>
+      
+      <HelpList />
+    </div>
+  );
+};
+
+export default HelpPage;
+</file>
+
+<file path="frontend/frontend-community/src/Home.jsx">
+// src/pages/Home.jsx
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_POSTS, GET_HELP_REQUESTS } from './queries';
+import PostCard from './postcard';
+import HelpCard from './helpcard';
+import Loading from './loading';
+import ErrorAlert from './error';
+
+const Home = () => {
+  const [user, setUser] = useState(null);
+  
+  // Get current user from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  // Query for recent posts
+  const { 
+    loading: postsLoading, 
+    error: postsError, 
+    data: postsData 
+  } = useQuery(GET_POSTS, {
+    variables: { limit: 3 }
+  });
+
+  // Query for recent help requests
+  const { 
+    loading: helpLoading, 
+    error: helpError, 
+    data: helpData 
+  } = useQuery(GET_HELP_REQUESTS, {
+    variables: { limit: 3 }
+  });
+
+  // Get a welcome message based on time of day
+  const getWelcomeMessage = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 18) return 'Good afternoon';
+    return 'Good evening';
+  };
+
+  return (
+    <div className="home-page">
+      <section className="hero" style={{
+        backgroundColor: '#e3f2fd',
+        padding: '40px 20px',
+        borderRadius: '8px',
+        marginBottom: '30px',
+        textAlign: 'center'
+      }}>
+        <h1 style={{ marginBottom: '15px' }}>
+          {user ? `${getWelcomeMessage()}, ${user.username}!` : 'Welcome to the Community Portal'}
+        </h1>
+        <p style={{ fontSize: '1.1rem', maxWidth: '700px', margin: '0 auto 20px' }}>
+          Connect with your community, share news, discuss ideas, and help each other.
+        </p>
+        {!user && (
+          <div className="action-buttons" style={{ marginTop: '20px' }}>
+            <Link to="/login" className="btn btn-outline" style={{ marginRight: '15px' }}>
+              Login
+            </Link>
+            <Link to="/register" className="btn btn-primary">
+              Register
+            </Link>
+          </div>
+        )}
+      </section>
+      
+      <div className="home-content" style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        gap: '30px'
+      }}>
+        {/* Recent Posts Section */}
+        <section className="recent-posts">
+          <div className="section-header" style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '20px'
+          }}>
+            <h2>Recent Posts</h2>
+            <Link to="/posts" className="btn btn-outline btn-sm">View All</Link>
+          </div>
+          
+          {postsLoading ? (
+            <Loading />
+          ) : postsError ? (
+            <ErrorAlert message={postsError.message} />
+          ) : (
+            <div className="posts-list">
+              {postsData?.posts?.length > 0 ? (
+                postsData.posts.slice(0, 3).map(post => (
+                  <PostCard key={post.id} post={post} />
+                ))
+              ) : (
+                <p>No posts found</p>
+              )}
+              
+              {user && (
+                <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                  <Link to="/create-post" className="btn btn-primary">
+                    Create New Post
+                  </Link>
+                </div>
+              )}
+            </div>
+          )}
+        </section>
+        
+        {/* Help Requests Section */}
+        <section className="help-requests">
+          <div className="section-header" style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '20px'
+          }}>
+            <h2>Help Requests</h2>
+            <Link to="/help" className="btn btn-outline btn-sm">View All</Link>
+          </div>
+          
+          {helpLoading ? (
+            <Loading />
+          ) : helpError ? (
+            <ErrorAlert message={helpError.message} />
+          ) : (
+            <div className="help-list">
+              {helpData?.helpRequests?.length > 0 ? (
+                helpData.helpRequests
+                  .filter(request => !request.isResolved)
+                  .slice(0, 3)
+                  .map(request => (
+                    <HelpCard key={request.id} helpRequest={request} />
+                  ))
+              ) : (
+                <p>No active help requests</p>
+              )}
+              
+              {user && (
+                <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                  <Link to="/create-help" className="btn btn-primary">
+                    Request Help
+                  </Link>
+                </div>
+              )}
+            </div>
+          )}
+        </section>
+      </div>
+    </div>
+  );
+};
+
+export default Home;
+</file>
+
+<file path="frontend/frontend-community/src/index.css">
+/* src/index.css */
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f7f7f7;
+  --text-color: #333;
+  --light-text: #666;
+  --border-color: #e0e0e0;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --warning-color: #ffc107;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  background-color: var(--secondary-color);
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header styles */
+.header {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-name {
+  font-weight: 500;
+}
+
+/* Card styles */
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.card-subtitle {
+  font-size: 0.875rem;
+  color: var(--light-text);
+  margin-bottom: 15px;
+}
+
+.card-content {
+  margin-bottom: 15px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Button styles */
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #3a7bc8;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline:hover {
+  background-color: rgba(74, 144, 226, 0.1);
+}
+
+.btn-danger {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #bd2130;
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* Badge styles */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.badge-success {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.badge-warning {
+  background-color: var(--warning-color);
+  color: black;
+}
+
+.badge-error {
+  background-color: var(--error-color);
+  color: white;
+}
+
+/* Form styles */
+.form-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.form-textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.error-message {
+  color: var(--error-color);
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+/* Grid layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Footer styles */
+.footer {
+  background-color: white;
+  padding: 20px 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  margin-top: 30px;
+}
+
+.footer-text {
+  color: var(--light-text);
+  font-size: 0.875rem;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: var(--primary-color);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error alert */
+.error-alert {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .header-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+</file>
+
+<file path="frontend/frontend-community/src/loading.jsx">
+import React from 'react';
+
+const Loading = () => {
+  return (
+    <div className="loading-spinner">
+      <div className="spinner"></div>
+    </div>
+  );
+};
+
+export default Loading;
+</file>
+
+<file path="frontend/frontend-community/src/main.jsx">
+// src/index.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { ApolloProvider } from '@apollo/client';
+import App from './App';
+import client from './ApolloClient';
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </React.StrictMode>,
+);
+</file>
+
+<file path="frontend/frontend-community/src/mutations.js">
+import { gql } from '@apollo/client';
+
+// Create a new community post
+export const CREATE_POST = gql`
+  mutation CreatePost($input: CreatePostInput!) {
+    createPost(input: $input) {
+      id
+      title
+      content
+      category
+      createdAt
+      author {
+        id
+        username
+      }
+    }
+  }
+`;
+
+// Update an existing post
+export const UPDATE_POST = gql`
+  mutation UpdatePost($input: UpdatePostInput!) {
+    updatePost(input: $input) {
+      id
+      title
+      content
+      category
+      updatedAt
+    }
+  }
+`;
+
+// Delete a post
+export const DELETE_POST = gql`
+  mutation DeletePost($id: ID!) {
+    deletePost(id: $id)
+  }
+`;
+
+// Create a new help request
+export const CREATE_HELP_REQUEST = gql`
+  mutation CreateHelpRequest($input: CreateHelpRequestInput!) {
+    createHelpRequest(input: $input) {
+      id
+      description
+      
+      isResolved
+      createdAt
+      author {
+        id
+        username
+      }
+    }
+  }
+`;
+
+// Update a help request
+export const UPDATE_HELP_REQUEST = gql`
+  mutation UpdateHelpRequest($input: UpdateHelpRequestInput!) {
+    updateHelpRequest(input: $input) {
+      id
+      description
+      
+      isResolved
+      updatedAt
+    }
+  }
+`;
+
+// Delete a help request
+export const DELETE_HELP_REQUEST = gql`
+  mutation DeleteHelpRequest($id: ID!) {
+    deleteHelpRequest(id: $id)
+  }
+`;
+
+// Volunteer for a help request
+export const VOLUNTEER_FOR_HELP = gql`
+  mutation VolunteerForHelp($helpRequestId: ID!) {
+    volunteerForHelp(helpRequestId: $helpRequestId) {
+      id
+      volunteers {
+        id
+        username
+      }
+    }
+  }
+`;
+
+// Withdraw from volunteering
+export const WITHDRAW_VOLUNTEER = gql`
+  mutation WithdrawVolunteer($helpRequestId: ID!) {
+    withdrawVolunteer(helpRequestId: $helpRequestId) {
+      id
+      volunteers {
+        id
+        username
+      }
+    }
+  }
+`;
+</file>
+
+<file path="frontend/frontend-community/src/postcard.jsx">
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { formatDate } from './dateFormatter';
+
+const Postcard = ({ post }) => {
+  // Truncate content if it's too long
+  const truncateContent = (content, maxLength = 150) => {
+    if (content.length <= maxLength) return content;
+    return content.substring(0, maxLength) + '...';
+  };
+
+  return (
+    <div className="card">
+      <div className="card-title">
+        <Link to={`/posts/${post.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          {post.title}
+        </Link>
+      </div>
+      
+      <div className="card-subtitle">
+        <span>
+          Posted by {post.author?.username || 'Anonymous'} | {formatDate(post.createdAt)}
+        </span>
+        <span className={`badge ${post.category === 'news' ? 'badge-primary' : 'badge-warning'}`} style={{ marginLeft: '10px' }}>
+          {post.category}
+        </span>
+      </div>
+      
+      <div className="card-content">
+        {truncateContent(post.content)}
+      </div>
+      
+      <div className="card-footer">
+        <Link to={`/posts/${post.id}`} className="btn btn-outline">
+          Read More
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Postcard;
+</file>
+
+<file path="frontend/frontend-community/src/postdetail.jsx">
+// src/components/Posts/PostDetail.jsx
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_POST } from './queries';
+import { DELETE_POST } from './mutations';
+import { formatDate } from './dateFormatter';
+import Loading from './loading';
+import ErrorAlert from './error';
+
+const PostDetail = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  
+  // Get current user from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+  
+  // Query to get post details
+  const { loading, error, data } = useQuery(GET_POST, {
+    variables: { id },
+    fetchPolicy: 'network-only' // Don't use cache
+  });
+  
+  // Delete post mutation
+  const [deletePost, { loading: deleteLoading }] = useMutation(DELETE_POST, {
+    onCompleted: () => {
+      // Navigate back to posts list after deletion
+      navigate('/posts');
+    },
+    onError: (error) => {
+      console.error('Error deleting post:', error);
+    }
+  });
+  
+  // Handle post deletion
+  const handleDelete = () => {
+    if (window.confirm('Are you sure you want to delete this post?')) {
+      deletePost({ variables: { id } });
+    }
+  };
+  
+  if (loading) return <Loading />;
+  if (error) return <ErrorAlert message={`Error loading post: ${error.message}`} />;
+  
+  const post = data.post;
+  
+  // Check if current user is the author
+  const isAuthor = user && post.author && user.id === post.author.id;
+  // Check if current user is a community organizer
+  const isOrganizer = user && user.role === 'COMMUNITY_ORGANIZER';
+  // Can edit/delete if author or organizer
+  const canModify = isAuthor || isOrganizer;
+  
+  return (
+    <div className="post-detail">
+      <div className="post-header" style={{ marginBottom: '20px' }}>
+        <Link to="/posts" className="btn btn-outline" style={{ marginRight: '10px' }}>
+          ← Back to Posts
+        </Link>
+        
+        {canModify && (
+          <div className="post-actions" style={{ display: 'inline-block' }}>
+            <button 
+              className="btn btn-danger"
+              onClick={handleDelete}
+              disabled={deleteLoading}
+            >
+              {deleteLoading ? 'Deleting...' : 'Delete Post'}
+            </button>
+          </div>
+        )}
+      </div>
+      
+      <div className="card">
+        <h1 className="card-title">{post.title}</h1>
+        
+        <div className="post-meta" style={{ marginBottom: '20px' }}>
+          <span>
+            Posted by {post.author?.username || 'Anonymous'} | {formatDate(post.createdAt)}
+          </span>
+          <span className={`badge ${post.category === 'news' ? 'badge-primary' : 'badge-warning'}`} style={{ marginLeft: '10px' }}>
+            {post.category}
+          </span>
+          {post.updatedAt && (
+            <div className="updated-at" style={{ fontSize: '0.8rem', color: '#666', marginTop: '5px' }}>
+              Last updated: {formatDate(post.updatedAt)}
+            </div>
+          )}
+        </div>
+        
+        {post.aiSummary && (
+          <div className="ai-summary" style={{ 
+            padding: '15px', 
+            backgroundColor: '#f8f9fa', 
+            borderLeft: '3px solid #4a90e2',
+            marginBottom: '20px' 
+          }}>
+            <h3 style={{ fontSize: '1rem', marginBottom: '5px' }}>AI Summary</h3>
+            <p>{post.aiSummary}</p>
+          </div>
+        )}
+        
+        <div className="post-content" style={{ 
+          lineHeight: '1.7',
+          whiteSpace: 'pre-wrap'
+        }}>
+          {post.content}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PostDetail;
+</file>
+
+<file path="frontend/frontend-community/src/postform.jsx">
+// src/components/Posts/PostForm.jsx
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
+import { CREATE_POST } from './mutations';
+import { GET_POSTS } from './queries';
+import ErrorAlert from './error';
+
+const PostForm = () => {
+  const [formData, setFormData] = useState({
+    title: '',
+    content: '',
+    category: 'discussion'
+  });
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  // Set up mutation
+  const [createPost, { loading }] = useMutation(CREATE_POST, {
+    onCompleted: (data) => {
+      // Redirect to the newly created post
+      navigate(`/posts/${data.createPost.id}`);
+    },
+    onError: (error) => {
+      setError(error.message);
+    },
+    // Update cache after creation
+    update: (cache, { data: { createPost } }) => {
+      // Read current posts from cache
+      const { posts } = cache.readQuery({ query: GET_POSTS }) || { posts: [] };
+      
+      // Write updated posts to cache
+      cache.writeQuery({
+        query: GET_POSTS,
+        data: { posts: [createPost, ...posts] }
+      });
+    },
+    // Variables for the mutation
+    variables: {
+      input: formData
+    }
+  });
+
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Validate form
+    if (!formData.title.trim()) {
+      setError('Title is required');
+      return;
+    }
+    
+    if (!formData.content.trim()) {
+      setError('Content is required');
+      return;
+    }
+    
+    // Clear any previous errors
+    setError('');
+    
+    // Submit the form
+    createPost();
+  };
+
+  return (
+    <div className="form-container">
+      <h2 className="form-title">Create New Post</h2>
+      
+      {error && <ErrorAlert message={error} />}
+      
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="title" className="form-label">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            className="form-input"
+            value={formData.title}
+            onChange={handleChange}
+            placeholder="Enter a descriptive title"
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="category" className="form-label">Category</label>
+          <select
+            id="category"
+            name="category"
+            className="form-select"
+            value={formData.category}
+            onChange={handleChange}
+            required
+          >
+            <option value="discussion">Discussion</option>
+            <option value="news">News</option>
+          </select>
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="content" className="form-label">Content</label>
+          <textarea
+            id="content"
+            name="content"
+            className="form-textarea"
+            value={formData.content}
+            onChange={handleChange}
+            placeholder="Write your post content here..."
+            required
+          ></textarea>
+        </div>
+        
+        <button 
+          type="submit" 
+          className="btn btn-primary"
+          disabled={loading}
+        >
+          {loading ? 'Creating...' : 'Create Post'}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default PostForm;
+</file>
+
+<file path="frontend/frontend-community/src/postlist.jsx">
+// src/components/Posts/PostList.jsx
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_POSTS, GET_POSTS_BY_CATEGORY } from './queries';
+import PostCard from './postcard';
+import Loading from './loading';
+import ErrorAlert from './error';
+
+const PostList = () => {
+  const [activeCategory, setActiveCategory] = useState('all');
+  
+  // Get all posts or filter by category
+  const { loading, error, data } = useQuery(
+    activeCategory === 'all' ? GET_POSTS : GET_POSTS_BY_CATEGORY,
+    {
+      variables: activeCategory === 'all' ? {} : { category: activeCategory },
+      fetchPolicy: 'network-only', // Don't use cache for this query
+    }
+  );
+
+  // Handle category change
+  const handleCategoryChange = (category) => {
+    setActiveCategory(category);
+  };
+
+  if (loading) return <Loading />;
+  if (error) return <ErrorAlert message={`Error loading posts: ${error.message}`} />;
+
+  // Get the posts from the appropriate query result
+  const posts = activeCategory === 'all' ? data.posts : data.postsByCategory;
+
+  return (
+    <div className="post-list">
+      <div className="category-filter" style={{ marginBottom: '20px' }}>
+        <button 
+          className={`btn ${activeCategory === 'all' ? 'btn-primary' : 'btn-outline'}`}
+          onClick={() => handleCategoryChange('all')}
+          style={{ marginRight: '10px' }}
+        >
+          All
+        </button>
+        <button 
+          className={`btn ${activeCategory === 'news' ? 'btn-primary' : 'btn-outline'}`}
+          onClick={() => handleCategoryChange('news')}
+          style={{ marginRight: '10px' }}
+        >
+          News
+        </button>
+        <button 
+          className={`btn ${activeCategory === 'discussion' ? 'btn-primary' : 'btn-outline'}`}
+          onClick={() => handleCategoryChange('discussion')}
+        >
+          Discussions
+        </button>
+      </div>
+
+      {posts.length === 0 ? (
+        <p>No posts found. Be the first to create a post!</p>
+      ) : (
+        <div className="grid">
+          {posts.map(post => (
+            <PostCard key={post.id} post={post} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default PostList;
+</file>
+
+<file path="frontend/frontend-community/src/PostsPage.jsx">
+// src/pages/PostsPage.jsx
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import PostList from './postlist';
+
+const PostsPage = () => {
+  const [user, setUser] = useState(null);
+  
+  // Get current user from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  return (
+    <div className="posts-page">
+      <div className="page-header" style={{ 
+        display: 'flex', 
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '30px'
+      }}>
+        <h1>Community Posts</h1>
+        {user && (
+          <Link to="/create-post" className="btn btn-primary">
+            Create New Post
+          </Link>
+        )}
+      </div>
+      
+      <PostList />
+    </div>
+  );
+};
+
+export default PostsPage;
+</file>
+
+<file path="frontend/frontend-community/src/queries.js">
+// src/graphql/queries.js
+import { gql } from '@apollo/client';
+
+// Query to get all community posts
+export const GET_POSTS = gql`
+  query GetPosts {
+    posts {
+      id
+      title
+      content
+      category
+      createdAt
+      author {
+        id
+        username
+      }
+    }
+  }
+`;
+
+// Query to get posts by category
+export const GET_POSTS_BY_CATEGORY = gql`
+  query GetPostsByCategory($category: String!) {
+    postsByCategory(category: $category) {
+      id
+      title
+      content
+      category
+      createdAt
+      author {
+        id
+        username
+      }
+    }
+  }
+`;
+
+// Query to get a single post by ID
+export const GET_POST = gql`
+  query GetPost($id: ID!) {
+    post(id: $id) {
+      id
+      title
+      content
+      category
+      aiSummary
+      createdAt
+      updatedAt
+      author {
+        id
+        username
+      }
+    }
+  }
+`;
+
+// Query to get all help requests
+export const GET_HELP_REQUESTS = gql`
+  query GetHelpRequests {
+    helpRequests {
+      id
+      description
+      
+      isResolved
+      createdAt
+      author {
+        id
+        username
+      }
+      volunteers {
+        id
+        username
+      }
+    }
+  }
+`;
+
+// Query to get a single help request by ID
+export const GET_HELP_REQUEST = gql`
+  query GetHelpRequest($id: ID!) {
+    helpRequest(id: $id) {
+      id
+      description
+      
+      isResolved
+      createdAt
+      updatedAt
+      author {
+        id
+        username
+      }
+      volunteers {
+        id
+        username
+      }
+    }
+  }
+`;
+
+// Query to get current user's posts
+export const GET_MY_POSTS = gql`
+  query GetMyPosts {
+    myPosts {
+      id
+      title
+      content
+      category
+      createdAt
+    }
+  }
+`;
+
+// Query to get current user's help requests
+export const GET_MY_HELP_REQUESTS = gql`
+  query GetMyHelpRequests {
+    myHelpRequests {
+      id
+      description
+      
+      isResolved
+      createdAt
+      volunteers {
+        id
+        username
+      }
+    }
+  }
+`;
+</file>
+
+<file path="frontend/frontend-community/vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+</file>
+
+<file path="server/community-microservice/CommPostSchema.js">
+const mongoose = require('mongoose');
+
+
+
+// Define the community post schema
+const CommPostSchema= new mongoose.Schema({
+  // Reference to the user who created the post
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',  // References the User model in auth service
+    required: true
+  },
+  // Title of the post
+  title: {
+    type: String,
+    required: true,
+    trim: true   // Remove whitespace from both ends
+  },
+  // Main content of the post
+  content: {
+    type: String,
+    required: true
+  },
+  // Category of the post
+  category: {
+    type: String,
+    required: true,
+    enum: ['news', 'discussion'],   // Only allow these values
+    default: 'discussion'
+  },
+  // AI-generated summary (optional)
+  aiSummary: {
+    type: String,
+    default: null   // Will implement later
+  },
+  // Creation timestamp
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  // Last update timestamp
+  updatedAt: {
+    type: Date,
+    default: null
+  }
+});
+
+// Add a pre-save hook to update the updatedAt field
+CommPostSchema.pre('save', function(next) {
+  // Only update the timestamp if the document is being modified (not new)
+  if (!this.isNew) {
+    this.updatedAt = new Date();
+  }
+  next();
+});
+
+// Create and export the model
+const CommunityPost = mongoose.model('CommunityPost', CommPostSchema);
+module.exports = CommunityPost;
+</file>
+
+<file path="server/community-microservice/CommResolvers.js">
+const CommunityPost = require('./CommPostSchema');
+const HelpRequest = require('./HelpReqSchema');
+const { AuthenticationError, ForbiddenError } = require('apollo-server-express');
+
+const resolvers = {
+  Query: {
+    posts: async () => CommunityPost.find().populate('author'),
+    postsByCategory: async (_, { category }) =>
+      CommunityPost.find({ category }).populate('author'),
+    post: async (_, { id }) => CommunityPost.findById(id).populate('author'),
+    helpRequests: async () => HelpRequest.find().populate('author volunteers'),
+    helpRequest: async (_, { id }) => HelpRequest.findById(id).populate('author volunteers'),
+    myPosts: async (_, __, { user }) => {
+      if (!user) throw new AuthenticationError('Not authenticated');
+      return CommunityPost.find({ author: user.id });
+    },
+    myHelpRequests: async (_, __, { user }) => {
+      if (!user) throw new AuthenticationError('Not authenticated');
+      return HelpRequest.find({ author: user.id });
+    },
+  },
+
+  Mutation: {
+    createPost: async (_, { input }, { user }) => {
+      if (!user) throw new AuthenticationError('Not authenticated');
+      return CommunityPost.create({ ...input, author: user.id });
+    },
+
+    updatePost: async (_, { input }, { user }) => {
+      if (!user) throw new AuthenticationError('Not authenticated');
+      const post = await CommunityPost.findById(input.id);
+      if (!post) throw new Error('Post not found');
+      if (post.author.toString() !== user.id) throw new ForbiddenError('Not authorized');
+      Object.assign(post, input, { updatedAt: new Date() });
+      return post.save();
+    },
+
+    deletePost: async (_, { id }, { user }) => {
+      if (!user) throw new AuthenticationError('Not authenticated');
+      const post = await CommunityPost.findById(id);
+      if (!post) throw new Error('Post not found');
+      if (post.author.toString() !== user.id) throw new ForbiddenError('Not authorized');
+      await post.remove();
+      return true;
+    },
+
+    createHelpRequest: async (_, { input }, { user }) => {
+      if (!user) throw new AuthenticationError('Not authenticated');
+      return HelpRequest.create({ ...input, author: user.id });
+    },
+
+    deleteHelpRequest: async (_, { id }, { user }) => {
+      if (!user) throw new AuthenticationError('Not authenticated');
+      const req = await HelpRequest.findById(id);
+      if (!req) throw new Error('Help request not found');
+      if (req.author.toString() !== user.id) throw new ForbiddenError('Not authorized');
+      await req.remove();
+      return true;
+    },
+
+    resolveHelpRequest: async (_, { id }, { user }) => {
+      if (!user) throw new AuthenticationError('Not authenticated');
+      if (user.role !== 'COMMUNITY_ORG') throw new ForbiddenError('Only organizers can resolve requests');
+      const req = await HelpRequest.findById(id);
+      if (!req) throw new Error('Help request not found');
+      req.isResolved = true;
+      req.updatedAt = new Date();
+      return req.save();
+    },
+
+    volunteerForHelp: async (_, { helpRequestId }, { user }) => {
+      if (!user) throw new AuthenticationError('Not authenticated');
+      const req = await HelpRequest.findById(helpRequestId);
+      if (!req) throw new Error('Help request not found');
+      if (!req.volunteers.includes(user.id)) {
+        req.volunteers.push(user.id);
+        req.updatedAt = new Date();
+        await req.save();
+      }
+      return req.populate('author volunteers');
+    },
+  }
+};
+
+module.exports = resolvers;
+</file>
+
+<file path="server/community-microservice/CommTypeDefs.js">
+const {gql} = require('apollo-server-express');
+
+const typeDefs = gql`
+enum Role {
+    RESIDENT
+    BUSINESS_OWNER
+    COMMUNITY_ORG
+}
+    type User @key(fields: "id") {
+        id: ID!
+        username: String!
+    
+        email: String!
+        role: Role!
+        
+    }
+    type CommunityPost{
+     id: ID!
+    author: User!
+    title: String!
+    content: String!
+    category: String!
+    aiSummary: String
+    createdAt: String!
+    updatedAt: String
+    }
+    type HelpRequest{
+    id: ID! 
+    author: User!
+    description: String!
+    isResolved: Boolean!
+    volunteers: [User]
+    createdAt: String!
+    updatedAt: String
+    }
+
+
+  type Query {
+    # Get all community posts
+    posts: [CommunityPost]
+    
+    # Get posts by category
+    postsByCategory(category: String!): [CommunityPost]
+    
+    # Get a specific post by ID
+    post(id: ID!): CommunityPost
+    
+    # Get all help requests
+    helpRequests: [HelpRequest]
+    
+    # Get a specific help request by ID
+    helpRequest(id: ID!): HelpRequest
+    
+    # Get posts created by the current user
+    myPosts: [CommunityPost]
+    
+    # Get help requests created by the current user
+    myHelpRequests: [HelpRequest]
+  }
+
+  
+  type Mutation {
+    # Create a new community post
+    createPost(input: CreatePostInput!): CommunityPost!
+    
+    # Update an existing community post
+    updatePost(input: UpdatePostInput!): CommunityPost!
+    
+    # Delete a community post
+    deletePost(id: ID!): Boolean!
+    
+    # Create a new help request
+    createHelpRequest(input: CreateHelpRequestInput!): HelpRequest!
+    
+    resolveHelpRequest(id: ID!): HelpRequest
+    
+    # Delete a help request
+    deleteHelpRequest(id: ID!): Boolean!
+    
+    # Volunteer for a help request
+    volunteerForHelp(helpRequestId: ID!): HelpRequest!
+  
+  }
+
+  input CreatePostInput {
+  title: String!
+  content: String!
+  category: String!
+}
+
+input UpdatePostInput {
+  id: ID!
+  title: String
+  content: String
+  category: String
+}
+
+input CreateHelpRequestInput {
+  description: String!
+  location: String
+}
+
+`;
+
+module.exports = typeDefs;
+</file>
+
+<file path="server/community-microservice/db.js">
+const mongoose = require('mongoose');
+
+// Connect to MongoDB
+const connectDB = async () => {
+  try {
+    // Get MongoDB URI from environment variables
+    const mongoURI = process.env.MONGO_URI || '';
+    
+    // Connect to MongoDB
+    await mongoose.connect(mongoURI);
+    
+    console.log('MongoDB connected successfully');
+  } catch (error) {
+    console.error('MongoDB connection error:', error.message);
+    // Exit process on database connection failure
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
+</file>
+
+<file path="server/community-microservice/HelpReqSchema.js">
+// src/schemas/HelpRequestSchema.js
+const mongoose = require('mongoose');
+
+// Define the help request schema
+const HelpReqSchema = new mongoose.Schema({
+  // Reference to the user who created the help request
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',  // References the User model
+    required: true
+  },
+  // Description of the help needed
+  description: {
+    type: String,
+    required: true
+  },
+  // Whether the request has been resolved
+  isResolved: {
+    type: Boolean,
+    default: false
+  },
+  // Array of users who volunteered to help
+  volunteers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  // Creation timestamp
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  // Last update timestamp
+  updatedAt: {
+    type: Date,
+    default: null
+  }
+});
+
+// Update the updatedAt field when document is modified
+HelpReqSchema.pre('save', function(next) {
+  if (!this.isNew) {
+    this.updatedAt = new Date();
+  }
+  next();
+});
+
+// Create and export the model
+const HelpRequest = mongoose.model('HelpRequest', HelpReqSchema);
+module.exports = HelpRequest;
+</file>
+
+<file path="server/community-microservice/index.js">
+// src/index.js
+const express = require('express');
+const { ApolloServer } = require('apollo-server-express');
+const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+const { buildSubgraphSchema } = require('@apollo/subgraph');
+// Import application modules
+const connectDB = require('./db');
+const typeDefs = require('./CommTypeDefs');
+const resolvers = require('./CommResolvers');
+
+// Load environment variables
+dotenv.config();
+
+// Create Express application
+const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
+
+// Start Apollo Server
+async function startServer() {
+  // Initialize Apollo Server
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    schema: buildSubgraphSchema({ typeDefs, resolvers }),
+    // Setup context for each request (authentication)
+    context: ({ req }) => {
+      // Get token from Authorization header
+      const authHeader = req.headers.authorization || '';
+      
+      if (authHeader) {
+        try {
+          // Verify JWT token
+          const token = authHeader.replace('Bearer ', '');
+          const user = jwt.verify(token, process.env.JWT_SECRET);
+          
+          // Return user info in context
+          return { user };
+        } catch (error) {
+          console.error('Invalid token:', error.message);
+          return { user: null };
+        }
+      }
+      
+      // Return null user if no token
+      return { user: null };
+    }
+  });
+
+  // Start the Apollo server
+  await server.start();
+  
+  // Apply middleware to Express
+  server.applyMiddleware({ app });
+
+  // Connect to database
+  await connectDB();
+
+  // Start Express server
+  const PORT = process.env.PORT || 4002;
+  app.listen(PORT, () => {
+    console.log(`Community server running at http://localhost:${PORT}${server.graphqlPath}`);
+  });
+}
+
+// Run the server
+startServer().catch(error => {
+  console.error('Server startup error:', error);
+});
+</file>
+
+<file path="server/community-microservice/package.json">
+{
+  "name": "community-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "apollo-server-express": "^3.13.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "graphql": "^16.10.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.12.2"
+  }
+}
+</file>
+
+<file path="server/gateway.js">
+// server/gateway/gateway.js
+const { ApolloServer } = require('apollo-server');
+const { ApolloGateway } = require('@apollo/gateway');
+require('dotenv').config();
+
+const gateway = new ApolloGateway({
+  serviceList: [
+    { name: 'auth', url: 'http://localhost:4000/graphql' },
+    { name: 'community', url: 'http://localhost:4002/graphql' }
+  ],
+  // optional: enable schema polling for live updates
+  __exposeQueryPlanExperimental: false,
+});
+
+const server = new ApolloServer({
+  gateway,
+  subscriptions: false, // Subscriptions are not yet supported with federation
+});
+
+server.listen({ port: 4005 }).then(({ url }) => {
+  console.log(`🚀 Gateway ready at ${url}`);
+});
+</file>
+
+<file path="frontend/frontend-auth/.gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="frontend/frontend-auth/eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+
+export default [
+  { ignores: ['dist'] },
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+    },
+  },
+]
+</file>
+
+<file path="frontend/frontend-auth/index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="frontend/frontend-auth/package.json">
+{
+  "name": "frontend-auth",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.13.5",
+    "@originjs/vite-plugin-federation": "^1.4.0",
+    "graphql": "^16.10.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.4.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "vite": "^6.2.0"
+  }
+}
+</file>
+
+<file path="frontend/frontend-auth/public/vite.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+</file>
+
+<file path="frontend/frontend-auth/README.md">
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+</file>
+
+<file path="frontend/frontend-auth/src/Apolloclient.js">
+// frontend/auth-frontend/src/apollo-client.js
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
+// Create HTTP link to your GraphQL server
+const httpLink = createHttpLink({
+  uri: 'http://localhost:4000/graphql', // Your auth service endpoint
+});
+
+// Add auth token to requests
+const authLink = setContext((_, { headers }) => {
+  
+  // Get token from localStorage
+  const token = localStorage.getItem('token');
+  console.log(token);
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    }
+  };
+});
+
+// Create Apollo Client
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
+});
+
+export default client;
+</file>
+
+<file path="frontend/frontend-auth/src/App.css">
+/* Add to your global.css or App.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffe6ec;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Arial';
+}
+
+.navbar-brand a {
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: #c2185b;
+}
+
+.navbar-links a,
+.navbar-user {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #333;
+}
+
+.logout-btn {
+  margin-left: 1rem;
+  padding: 0.3rem 0.75rem;
+  border: none;
+  background-color: #e91e63;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+</file>
+
+<file path="frontend/frontend-auth/src/App.jsx">
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './Navbar';
+import LoginForm from './Login';
+import RegisterForm from './Register';
+
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/" element={<h1>Welcome to Community Portal</h1>} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
+</file>
+
+<file path="frontend/frontend-auth/src/assets/react.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+</file>
+
+<file path="frontend/frontend-auth/src/index.css">
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* Add to your global.css or App.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffe6ec;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Arial';
+}
+
+.navbar-brand a {
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: #c2185b;
+}
+
+.navbar-links a,
+.navbar-user {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #333;
+}
+
+.logout-btn {
+  margin-left: 1rem;
+  padding: 0.3rem 0.75rem;
+  border: none;
+  background-color: #e91e63;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+</file>
+
+<file path="frontend/frontend-auth/src/Login.jsx">
+// frontend/auth-frontend/src/components/LoginForm.jsx
+import React, { useState } from 'react';
+import { useMutation, gql } from '@apollo/client';
+
+// GraphQL login mutation
+const LOGIN_MUTATION = gql`
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        id
+        email
+        role
+      }
+    }
+  }
+`;
+
+const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  
+  const [login, { loading }] = useMutation(LOGIN_MUTATION, {
+    onCompleted: (data) => {
+      // Store token in localStorage
+      console.log("Login data",data);
+      localStorage.setItem('token', data.login.token);
+      // Store user data (optional)
+      localStorage.setItem('user', JSON.stringify(data.login.user));
+      
+      // Redirect or update UI
+      window.location.href = '/dashboard';
+    },
+    onError: (error) => {
+      setErrorMessage(error.message);
+    }
+  });
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login({ variables: { email, password } });
+  };
+  
+  return (
+    <div className="login-form">
+      <h2>Login</h2>
+      {errorMessage && <p className="error">{errorMessage}</p>}
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default LoginForm;
+</file>
+
+<file path="frontend/frontend-auth/src/main.jsx">
+// frontend/auth-frontend/src/main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { ApolloProvider } from '@apollo/client';
+import client from './Apolloclient';
+import App from './App';
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </React.StrictMode>,
+);
+</file>
+
+<file path="frontend/frontend-auth/src/Navbar.jsx">
+// frontend/auth-frontend/src/components/Navbar.jsx
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+const Navbar = () => {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    navigate('/login');
+  };
+
+  return (
+    <nav className="navbar">
+      <div className="navbar-brand">
+        <Link to="/">🌸 Community Portal</Link>
+      </div>
+      <div className="navbar-links">
+        {!user ? (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
+          </>
+        ) : (
+          <>
+            <span className="navbar-user">Hi, {user.username}!</span>
+            <Link to="/dashboard">Dashboard</Link>
+            <button onClick={handleLogout} className="logout-btn">Logout</button>
+          </>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
+</file>
+
+<file path="frontend/frontend-auth/src/Register.jsx">
+// frontend/auth-frontend/src/components/RegisterForm.jsx
+import React, { useState } from 'react';
+import { useMutation, gql } from '@apollo/client';
+
+// GraphQL register mutation
+const REGISTER_MUTATION = gql`
+  mutation Register($username: String!, $password: String!, $email: String!, $role: Role!)
+   {
+    register(
+        username: $username
+         password: $password
+        email: $email
+        role: $role)
+        {
+        token
+        user {
+          id
+          username
+          
+        }
+      }
+}
+`;
+
+const RegisterForm = () => {
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+    email: '',
+    role: 'RESIDENT',
+  });
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const [register, { loading }] = useMutation(REGISTER_MUTATION, {
+    onCompleted: (data) => {
+      localStorage.setItem('token', data.register.token);
+      localStorage.setItem('user', JSON.stringify(data.register.user));
+      window.location.href = '/dashboard';
+    },
+    onError: (error) => {
+      console.log("Registration error",error.message); 
+      setErrorMessage(error.message);
+    }
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    register({ variables: formData });
+  };
+
+  return (
+    <div className="register-form">
+      <h2>Register</h2>
+      {errorMessage && <p className="error">{errorMessage}</p>}
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Username:</label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Role:</label>
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            required
+          >
+            <option value="RESIDENT">Resident</option>
+            <option value="BUSINESS_OWNER">Business Owner</option>
+            <option value="COMMUNITY_ORG">Community Organizer</option>
+          </select>
+        </div>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Registering...' : 'Register'}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default RegisterForm;
+</file>
+
+<file path="frontend/frontend-auth/vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import federation from '@originjs/vite-plugin-federation'
+
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), federation({
+    name: 'auth',
+    filename: 'remoteEntry.js',
+    exposes: {
+      './Login': './src/Login',
+      './Register': './src/Register',
+      './Navbar': './src/Navbar',
+    },
+    shared: ['react', 'react-dom', '@apollo/client', 'graphql'],
+  })],
+  server: {
+    port: 3001,
+  },
+  build: {
+    outDir: 'dist',
+    cssCodeSplit: false,
+    target: 'esnext',
+    modulePreload: 'false',
+    minify: 'false'
+  },
+})
+</file>
+
+<file path="README.md">
+"# microservice-comm"
+</file>
+
+<file path="server/auth-microservice/authResolvers.js">
+const { AuthenticationError, ForbiddenError } = require('apollo-server-express');
+const User = require('./UserSchema');
+const jwt = require('jsonwebtoken');
+
+
+const resolvers = {
+    Query: {
+      me: (_, __, context) => {
+        // Check if user is authenticated
+        if (!context.user) {
+          throw new AuthenticationError('Not authenticated');
+        }
+        
+        // Return user data
+        return User.findById(context.user.id);
+      },
+      
+      allUsers: (_, __, context) => {
+        // Check if user is authenticated and has the right role
+        if (!context.user) {
+          throw new AuthenticationError('Not authenticated');
+        }
+        
+        if (context.user.role !== 'COMMUNITY_ORGANIZER') {
+          throw new ForbiddenError('Not authorized to view all users');
+        }
+        
+        // Return all users
+        return User.find({});
+      }
+    },
+    
+    Mutation: {
+        register: async (_, { username, email, password, role }) => {
+          const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+          if (existingUser) {
+            throw new Error('User already exists');
+          }
+    
+          const newUser = new User({ username, email, password, role });
+          await newUser.save();
+    
+          const token = jwt.sign({ id: newUser._id, role: newUser.role }, process.env.JWT_SECRET, { expiresIn: '1d' });
+    
+          return {
+            token,
+            user: newUser
+          };
+        },
+        
+    
+        login: async (_, { email, password }) => {
+          const user = await User.findOne({ email });
+          if (!user) {
+            throw new AuthenticationError('Invalid credentials');
+          }
+    
+          const valid = await user.comparePassword(password);
+          if (!valid) {
+            throw new AuthenticationError('Invalid credentials');
+          }
+    
+          const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1d' });
+    
+          return {
+            token,
+            user
+          };
+        } 
+    }
+
+};
+
+module.exports = resolvers;
+</file>
+
+<file path="server/auth-microservice/authTypeDefs.js">
+const { gql } = require('apollo-server-express');
+
+
+//schema with roles
+const typeDefs = gql`
+enum Role {
+RESIDENT
+BUSINESS_OWNER
+COMMUNITY_ORG
+}
+
+type User @key(fields: "id") {
+id: ID!
+username: String!
+password: String!
+email: String!
+role: Role!
+createdAt: String!
+}
+
+type AuthPayload {
+token: String!
+user: User!
+}
+type Query {
+me: User
+allUsers: [User]
+}
+type Mutation {
+register(username: String!, password: String!, email: String!, role: Role!): AuthPayload
+
+login(email: String!, password: String!): AuthPayload
+}
+`;
+module.exports = typeDefs;
+</file>
+
+<file path="server/auth-microservice/index.js">
+//entry point
+const express = require('express');
+const { ApolloServer } = require('apollo-server-express');
+const { buildSubgraphSchema } = require('@apollo/subgraph');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+const typeDefs = require('./authTypeDefs');
+const resolvers = require('./authResolvers');
+
+dotenv.config();
+
+const app = express();
+app.use(cors());
+
+async function startServer() {
+    const server = new ApolloServer({
+        typeDefs,
+        resolvers,
+        schema: buildSubgraphSchema({ typeDefs, resolvers }),
+        context:async ({ req }) => {
+            try{
+                const authHeader = req.headers.authorization || '';
+            
+            console.log("authHeader",authHeader);
+            if (authHeader && authHeader.startsWith('Bearer ')) {
+                const token = authHeader.replace('Bearer ', '');
+                const user = jwt.verify(token,process.env.JWT_SECRET);
+                    return { user };
+                
+            }
+                return { user: null };
+            }catch (error){
+                console.error('Error verifying token',error);
+        
+        return { user: null};
+    }
+            },
+    });
+    await server.start();
+    server.applyMiddleware({ app });
+
+    try {
+        await mongoose.connect(process.env.MONGO_URI);
+        console.log('Connected to MongoDB');
+    } catch (error) {
+        console.error('Failed to connect to MongoDB', error);
+    }
+    
+    app.listen({ port: process.env.PORT || 4000 }, () => {
+        console.log(`Server ready at http://localhost:${process.env.PORT}${server.graphqlPath}`);
+    });
+
+}
+
+startServer();
+</file>
+
+<file path="server/auth-microservice/package.json">
+{
+  "dependencies": {
+    "@apollo/subgraph": "^2.10.0",
+    "apollo-server-express": "^3.13.0",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "graphql": "^16.10.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.12.2"
+  },
+  "name": "auth-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
+</file>
+
+<file path="server/auth-microservice/UserSchema.js">
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+const UserSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    role: {
+        type: String,
+        required: true,
+        enum: ['RESIDENT', 'BUSINESS_OWNER', 'COMMUNITY_ORG'],
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+});
+//Pre-save hook to hash the password before saving to the database
+UserSchema.pre('save', async function(next) {
+  // Only hash the password if it's modified (or new)
+  if (!this.isModified('password')) return next();
+  
+  try {
+    // Generate a salt
+    const salt = await bcrypt.genSalt(10);
+    // Hash the password using the salt
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Method to check if a password is valid
+UserSchema.methods.comparePassword = async function(password) {
+  return await bcrypt.compare(password, this.password);
+};
+
+const User = mongoose.model('User', UserSchema);
+module.exports = User;
+</file>
+
+</files>

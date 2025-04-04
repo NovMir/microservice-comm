@@ -9,7 +9,7 @@ BUSINESS_OWNER
 COMMUNITY_ORG
 }
 
-type User {
+type User @key(fields: "id") {
 id: ID!
 username: String!
 password: String!

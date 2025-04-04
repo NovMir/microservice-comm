@@ -98,7 +98,7 @@ const RegisterForm = () => {
           >
             <option value="RESIDENT">Resident</option>
             <option value="BUSINESS_OWNER">Business Owner</option>
-            <option value="COMMUNITY_ORGANIZER">Community Organizer</option>
+            <option value="COMMUNITY_ORG">Community Organizer</option>
           </select>
         </div>
         <button type="submit" disabled={loading}>
